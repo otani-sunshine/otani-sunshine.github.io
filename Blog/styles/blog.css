@@ -1,0 +1,66 @@
+.preview{
+	position: relative;
+	height: 200px;
+	background-size:cover;
+	display: none;
+}
+
+.preview::after{
+	content:'';
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0, .4);
+}
+
+
+
+.content{
+	padding: 50px 0;
+}
+
+.content>.container{
+	padding: 0 75px;
+}
+
+.content .container>h1{
+	color: #9CBBA4;
+	margin-bottom: 30px;
+	font-size: 48px;
+	text-align: center;
+}
+
+.content .container>p{
+	padding: 0 50px;
+	font-size: 125%;
+	line-height:1.8;
+	text-indent:1em;/* 首行缩进 */
+}
+
+.content .container>img{
+	width: 100%;	
+}
+
+@media screen and (max-width:768px){
+	.content>.container{
+		padding: 0 30px;
+	}
+}
+
+@media screen and (min-width: 768px) and (max-width:992px){
+	.content>.container{
+		padding: 0 15px;
+	}
+}
+
+@media screen and (min-width:1200px){
+	.content .container>p,
+	.content .container>img{
+		margin-left: auto;
+		margin-right: auto;
+		width: 80%;
+		display: block;
+	}
+}

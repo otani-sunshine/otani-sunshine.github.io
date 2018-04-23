@@ -1,0 +1,143 @@
+#intr{
+  background: #000;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+#intr .pro{
+ margin-left: 217px;
+ padding-top: 26px;
+ display: inline-block;
+}
+#intr .pro>a{
+ color: #b9b9b9;
+ text-decoration: none;
+ font-size: 12px;
+}
+#intr .new{
+  font-size: 72px;
+  color: #fff;
+  text-align: center;
+  padding-top: 116px;
+  padding-bottom: 53px;
+}
+#intr .sew{
+   display: inline-block;
+   height: 1px;
+   width: 60px;
+   background: #c5842d;
+   margin-left: 50%;
+   transform:translateX(-50%);
+}
+#intr .details{
+ /* border:1px solid red; */
+  text-indent:2em ;
+  color: #878787;
+  font-size: 18px;
+  width: 758px;
+  padding-top: 60px;
+  margin-left: 50%;
+  transform:translateX(-50%);
+  text-align: center;
+  line-height: 2em;
+  padding-bottom: 64px;
+}
+
+#second,#second-one,#thirst{
+   margin-left: 136px;
+   margin-right: 136px;
+   /* width: 30%; */
+   overflow: hidden;
+  
+}
+#second> .left,#second-one> .left{
+  float: left;
+}
+#second> .left> h2,#second-one> .left > h2{
+   color: #fff;
+   font-size: 48px;
+   margin-top: 280px;
+   padding-bottom: 50px;
+}
+#second> .left> p,#thirst > .right> p,#second-one> .left > p{
+color: #878787;
+font-size: 24px;
+padding-bottom: 50px;
+}
+#second> .left> span,#thirst > .right > span,#second-one> .left> span{
+  display: inline-block;
+  width: 40px;
+  height:30px;
+  font-size: 24px; 
+  line-height: 30px;
+  text-align: center;
+  border-radius:60px;
+  border:1px solid #ee233d;
+}
+#second> .left> span > a,#thirst > .right > span > a,#second-one> .left  a{
+  text-decoration: none;
+  color:white;
+}
+#second> .left> i,#thirst > .right > i ,#second-one> .left > i{
+   display: inline-block;
+   margin-top: 124px;
+   color: #878787;
+}
+#second> .right{
+  float: left;
+  margin-left: 15%;
+  margin-top: 177px;
+  width: 50%;
+}
+hr{
+  border:1px solid gray;
+  margin-left: 136px;
+  margin-right: 136px;
+}
+#thirst{
+  overflow: hidden;
+}
+#thirst> .left{
+  float: left;
+  margin-top: 106px;
+}
+#thirst> .left> img ,#second-one > .left > img{
+ width: 90%;	
+}
+#second-one > .left > img{
+ margin-left:5% ;
+}
+#thirst > .right{
+  float: left;
+  width: 30%;
+  margin-top: 200px;
+}
+#thirst > .right> h2{
+   color: #fff;
+   font-size: 48px;
+   padding-bottom: 50px;
+}
+#second-one {
+  position: relative;
+}
+#second-one > span{
+   display: inline-block;
+   width:75px;
+   height: 40px;
+   background: white;
+   opacity: .6;
+   margin-left: 50%;
+   transform:translateX(-50%);
+   position: absolute;
+   bottom: 0;
+}
+#second-one > span > a{
+   display: inline-block;
+   width: 75px;
+   height: 40px;
+  font-size: 30px;
+  text-decoration: none;
+  text-align: center;
+ /*  line-height: 40px; */
+}
+

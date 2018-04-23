@@ -1,0 +1,267 @@
+
+.banner{ 
+    height:670px;
+	background-color: #000;
+}
+.banner .container{ 
+    height: 670px; 
+	}
+.banner .banner-left{ 
+       position: absolute; 
+	   left: 75px; 
+	   top: 200px; 
+	   padding-top: 30px; 
+	   width: 332px; 
+	   text-align: center; /* height: 500px; */
+	   background: url(../images/banner-left-bg.png) no-repeat left top,url(../images/banner-left-bg.png) no-repeat 0 170px ;
+	   }
+.banner .banner-left>h1{
+       color: #fff;
+	   font-size: 70px; 
+	   font-family: 'SimHei'; 
+	   font-weight: normal; /* 400细体 800粗体 */
+    }
+.banner .banner-left>h2{ 
+      margin-top: 10px; 
+	  color: #fff; 
+	  font-size: 26px; 
+	  font-family: 'SimSun'; 
+	  font-style: italic; 
+	  font-weight: 400; 
+	}
+.banner .banner-left>a{ 
+     margin-top: 75px; 
+	 padding: 5px 20px; 
+	 color: #c5842d; 
+	 font-size: 26px; 
+	 text-decoration: none; 
+	 border: 1px #c5842d solid; 
+	 display: inline-block; 
+	 transition:all .35s; 
+	 }
+.banner .banner-left>a:hover{ 
+     color: #e6b26c; 
+	 border-radius: 25px;
+	}
+.banner .banner-right{ 
+     position: absolute; 
+	 right: 10px;
+	 top: 115px; 
+    }
+.banner .banner-right::after{ 
+    content:''; 
+	position: absolute; 
+	top: 100%; 
+	left: 0; 
+	width: 100%; 
+	height: 145px; 
+	background: url(../images/banner01-right-shadow.png) no-repeat left top; 
+	opacity: 0.8;
+	}
+.banner .pagination{ 
+   text-align: center; 
+   position: absolute; 
+   bottom: 40px; 
+   left: 0; right: 0;/* 居中的一种方式 left: 0; right: 0; text-align: center;*/}
+.banner .pagination>span{ 
+    width: 12px; 
+	height: 12px; 
+	margin: 3px;
+	background-color: #6c6c6c; 
+	border-radius:50%; 
+	display: inline-block; 
+	cursor: pointer; }
+.banner .pagination>span.active/* 拥有active(class名)的span */{ background-color: #fff;}
+
+#article{
+  overflow: hidden;
+  background: #f1f1f1;
+}
+#article>.left{
+ width: 20%;
+}
+#article>.left> img{
+  float: left;
+  height: 706px;
+}
+#article>.right{
+  float: left;
+  padding-left: 12%;
+  padding-top: 114px;
+  width: 45%;
+}
+#article>.right>.top{
+ border-left: 1px solid #c2c1c1;
+ padding-left: 25px;
+}
+#article>.right>.top > h1{
+  margin-bottom: 20px;
+}
+#article>.right>.top > p{
+  margin-bottom: 5px;
+ 
+}
+#article>.right>.bottom{
+ padding-left: 20px;
+ padding-top: 104px;
+
+
+}
+#article>.right>.bottom>.left{
+  float: left;
+  width: 40%;
+  margin-right: 10%;
+}
+#article>.right>.bottom>.left> h1{
+  padding-bottom: 24px;
+}
+#article>.right>.bottom>.left> h2{
+  font-size: 16px;
+  padding-bottom: 10px;
+}
+
+#article>.right>.bottom>.left> p{
+  padding-bottom: 40px;
+  line-height:1.5em;
+}
+#article>.right>.bottom>.left> img{
+margin-bottom: 20px;
+text-shadow: 5px 3px 8px #c5842d;
+}
+#article>.right>.bottom>.left> a{
+ text-decoration: none;
+ margin-left: 90px;
+ color: #c5842d;
+ 
+}
+#article>.right>.bottom>.left>.woman{
+ text-decoration: none;
+ margin-left: 90px;
+ color:black;
+}
+#details{
+/*  height: 700px; */
+ position: relative;
+}
+#details> img{
+ width: 100%;
+}
+#details>.right{
+position: absolute;
+width: 308px;
+top: 161px;
+right: 220px;
+}
+#details>.right h2{
+ color: #c5842d;
+}
+#details>.right p{
+  color: #dadada;
+  margin-top: 36px;
+  line-height:2em;
+}
+#details>.right .intr-xin{
+  float: right;
+  border:1px solid #c5842d;
+  text-decoration: none;
+  color: #c5842d;
+  margin-top: 52px;
+  width: 100px;
+  text-align: center;
+  font-size: 14px;
+  transition:1s;
+}
+#details>.right .intr-xin:hover{
+ border-radius:50px;
+}
+
+#lunbo-second{
+  margin-top: -5px;
+  background: #f1f1f1;
+  padding-bottom: 40px;
+}
+#lunbo-second >.header{
+ text-align: center;
+}
+#lunbo-second >.header > h3{
+  font-size: 24px;
+  padding-top: 24px;
+  padding-bottom: 14px;
+}
+#lunbo-second >.header > p{
+  font-size: 16px;
+}
+
+#lunbo-second > .second >.banner-wrapper  .container{
+  float: left;
+  width: 20%;
+  margin-right: 4%;
+  transition:1s;
+  /* border:1px solid red; */
+}
+#lunbo-second > .second >.banner-wrapper{
+  overflow: hidden;
+  padding-top: 138px;
+  position: relative;
+  left: 0;
+  right: 0;
+  text-align: center;
+  margin-left: 220px;
+}
+#lunbo-second > .footer{
+  border:1px solid #979696;
+  color: #979696;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-left: 50%;
+  margin-top: 98px;
+  transition:1s;
+}
+#lunbo-second > .second >.banner-wrapper  .container:hover{
+  border:1px solid white;
+  -webkit-box-shadow: hoff voff radius color;
+  -moz-box-shadow: hoff voff radius color;
+  box-shadow: 10px 10px 5px #979696;
+  margin-top: -2px;
+  background: white;
+}
+#lunbo-second > .footer:hover{
+  border-radius:30px;
+  color: #c5842d;
+   border:1px solid #c5842d;
+}
+#select{
+ background: #1e1e1e;
+ overflow: hidden;
+}
+#select > img{
+  float: right;
+  text-align: center;
+  margin-right:10%;
+  margin-top: 10%;
+}
+#select >.left{
+ margin-top: 297px;
+ padding-bottom: 291px;
+ text-align: center;
+ line-height: 2em;
+ /* background: black; */
+}
+#select >.left > h1,#select >.left > h3{
+ color: #fff;
+ padding-bottom: 10px;
+}
+#select >.left > a{
+  text-decoration: none;
+  color: #c5842d;
+  border: 1px solid #c5842d; 
+  display: inline-block;
+  width:150px;
+  font-size: 18px;
+  transition:1s;
+}
+#select >.left > a:hover{
+  border-radius:50px;
+}
+

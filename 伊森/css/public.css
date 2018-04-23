@@ -1,0 +1,91 @@
+*{
+   margin: 0; 
+   padding: 0; 
+   color:#333; 
+   list-style:none; 
+   font-family: 'Microsoft Yahei';
+   }
+header{ 
+   padding:15px 0; 
+}
+.container{ 
+   position: relative; margin: 0 auto; width:1117px;
+   }
+header>img{
+  margin:0 auto; display:block;
+}
+.navbar-top{ 
+   background:#363636; text-align: center; font-size: 0;
+   }/* 行内元素居中用text-align,font-size: 0解决行内元素加高度问题 */
+.navbar-top>ul{ 
+   list-style: none; overflow: hidden; display: inline-block; 
+   }/* 用溢出隐藏overflow: hidden解决浮动问题 ,行内元素宽高自适应*/
+.navbar-top>ul>li{ 
+   float:left;
+   }
+.navbar-top>ul>li>a	{ 
+    color:#fff; 
+	display: block; 
+	padding:15px 12px;
+	margin:0 36px; 
+	font-size: 16px; 
+	text-decoration: none; /* border-bottom: 2px #fff solid; */
+	position: relative;
+	transition: all .35s; 
+	
+	}
+.navbar-top>ul>li>a::after{ 
+   content:''; 
+   position: absolute;
+   left: 50%;
+   bottom: 0; width: 0; height: 2px; 
+   background-color: #fff;
+   transition: width .35s;
+   transform:translateX(-50%);
+   }
+.navbar-top>ul>li>a:hover{
+  color: #c5842d; 
+}
+.navbar-top>ul>li>a:hover::after{ 
+    width: 75px;
+	}
+@media screen and (max-width: 992px){
+	.container{ width:750px; }
+	.navbar-top>ul>li>a{  margin: 0 18px; }
+}
+@media screen and (max-width: 768px){
+	body{ width: 768px; }
+}
+@media screen and (max-width: 1117px){
+	.container{ width:100%; }
+}
+#foot{
+  background: black;
+  overflow: hidden;
+  padding-left: 5%;
+}
+#foot div{
+  float: left;
+  width: 15%;
+  text-align: center;
+}
+#foot > div  a{
+  color:gray;
+  text-decoration: none;
+  line-height: 2em;
+  font-size: 14px;
+}
+#foot > div  a:hover{
+  color:#c5842d;
+}
+#ft{
+  background: #1e1e1e;
+  padding: 20px 0 20px 5% ;
+  font-size: 14px;
+}
+ #ft span{
+   display: inline-block;
+   width: 20%;
+   color: gray;
+   text-align: center;
+ }

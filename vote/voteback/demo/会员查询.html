@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html style="width: 100%;height: 100%;">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="renderer" content="webkit" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="shortcut icon" href="../images/logo_icon.ico" type="/image/x-icon">
+    <link href="../css/base.css" type="text/css" rel="stylesheet" />
+    <title>会员查询</title>
+</head>
+
+<body style="background-color: #ebedf3;">
+    <div class="tone_bg">
+        <div class="tone_base">
+            <div class="twomain1 puaprde_search">
+                <div class="twomain1_btn">
+                    <a class="twomain1_btn1 log_behavior_btn">筛选</a>
+                </div>
+            </div>
+            
+            <!-- 筛选 -->
+            <div id="inquireMember" class="log_behavior col-overhid">
+                <!--************ left ************-->
+                <div class="log_behavior_left">
+                    <div class="log_behavior_title">
+                        <p @click="ctabs(index,index)" v-for="(logTitle, index) in logTitles" :class="{log_behavior_title_now:active == index}">{{logTitle.name}}</p>
+                    </div>
+                    <!-- 第一块 -->
+                    <div class="log_behavior_total1 log_behavior_total col-overhid" v-if="activeblock==0">
+                        <ul class="log_behavior_list">
+                            <li>
+                                <div class="log_behavior_li" @click="showFour($event)" :class="{log_bgcolor_click:baseParam.opentimeNum1}">
+                                    <span>{{memberParam.memberOpentime.title}}</span>
+                                    <img src="../images/log_behavior_img1-4.png">
+                                </div>
+                                <div class="log_behavior_show log_behavior_sex log_behavior_form">
+                                    <img src="../images/log_behavior_arr.png" class="log_behavior_show_arr">
+                                    <div>
+                                        <div class="log_behavior_form_labipt">
+                                            <div>
+                                                <input type="text" class="log_behavior_form_ipt log_behavior_form_iptrili width-110" v-model="baseParam.opentimeNum1">
+                                                <i class="iconfont icon-rili log_behavior_form_rili1"></i>
+                                                <span class="log_behavior_form_span">-</span>
+                                                <input type="text" class="log_behavior_form_ipt log_behavior_form_iptrili width-110" v-model="baseParam.opentimeNum2">
+                                                <i class="iconfont icon-rili log_behavior_form_rili2"></i>
+                                            </div>
+                                            <span class="log_behavior_calendar">确定</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="log_behavior_li" @click="showFour($event)" :class="{log_bgcolor_click:baseParam.applytimeNum1}">
+                                    <span>{{memberParam.memberApplytime.title}}</span>
+                                    <img src="../images/log_behavior_img1-4.png">
+                                </div>
+                                <div class="log_behavior_show log_behavior_sex log_behavior_form">
+                                    <img src="../images/log_behavior_arr.png" class="log_behavior_show_arr">
+                                    <div>
+                                        <div class="log_behavior_form_labipt">
+                                            <div>
+                                                <input type="text" class="log_behavior_form_ipt log_behavior_form_iptrili width-110" v-model="baseParam.applytimeNum1">
+                                                <i class="iconfont icon-rili log_behavior_form_rili1"></i>
+                                                <span class="log_behavior_form_span">-</span>
+                                                <input type="text" class="log_behavior_form_ipt log_behavior_form_iptrili width-110" v-model="baseParam.applytimeNum2">
+                                                <i class="iconfont icon-rili log_behavior_form_rili2"></i>
+                                            </div>
+                                            <span class="log_behavior_calendar">确定</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="log_behavior_li" @click="showFive($event)" :class="{log_bgcolor_click:baseParam.superiorBrokerVal}">
+                                    <span>{{memberParam.memberSuperiorBroker.title}}</span>
+                                    <img src="../images/log_behavior_img3-4.png">
+                                </div>
+                                <div class="log_behavior_show log_behavior_twoipt">
+                                    <img src="../images/log_behavior_arr.png" class="log_behavior_show_arr">
+                                    <div class="log_behavior_oneipt_tol">
+                                        <input type="text" placeholder="请输入上级经纪会员编号/名称" v-model="baseParam.superiorBrokerVal">
+                                        <a>确定</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="log_behavior_li" @click="showFive($event)" :class="{log_bgcolor_click:baseParam.provinceBrokerVal}">
+                                    <span>{{memberParam.memberProvinceBroker.title}}</span>
+                                    <img src="../images/log_behavior_img3-2.png">
+                                </div>
+                                <div class="log_behavior_show log_behavior_twoipt">
+                                    <img src="../images/log_behavior_arr.png" class="log_behavior_show_arr">
+                                    <div class="log_behavior_oneipt_tol">
+                                        <input type="text" placeholder="请输入所属省级经纪会员编号/名称" v-model="baseParam.provinceBrokerVal">
+                                        <a>确定</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="log_behavior_li" @click="show($event)" :class="{log_bgcolor_click:baseParam.openSourceVal}">
+                                    <span>{{memberParam.memberOpenSource.title}}</span>
+                                    <img src="../images/log_behavior_img1-1.png">
+                                </div>
+                                <div class="log_behavior_show">
+                                    <img src="../images/log_behavior_arr.png" class="log_behavior_show_arr">
+                                    <p class="log_behavior_show_sex" v-for="openSourceItem in memberParam.memberOpenSource.items" @click="baseParam.openSourceVal = openSourceItem.name">{{openSourceItem.name}}
+                                        <a class="log_behavior_right" v-if="baseParam.openSourceVal==openSourceItem.name"></a>
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="log_behavior_li" @click="show($event)" :class="{log_bgcolor_click:baseParam.openTypeVal}">
+                                    <span>{{memberParam.memberOpenType.title}}</span>
+                                    <img src="../images/log_behavior_img3-1.png">
+                                </div>
+                                <div class="log_behavior_show">
+                                    <img src="../images/log_behavior_arr.png" class="log_behavior_show_arr">
+                                    <p class="log_behavior_show_sex" v-for="openTypeItem in memberParam.memberOpenType.items" @click="baseParam.openTypeVal = openTypeItem.name">{{openTypeItem.name}}
+                                        <a class="log_behavior_right" v-if="baseParam.openTypeVal==openTypeItem.name"></a>
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="log_behavior_li" @click="show($event)" :class="{log_bgcolor_click:baseParam.sexVal}">
+                                    <span>{{memberParam.memberSex.title}}</span>
+                                    <img src="../images/log_behavior_img3-7.png">
+                                </div>
+                                <div class="log_behavior_show">
+                                    <img src="../images/log_behavior_arr.png" class="log_behavior_show_arr">
+                                    <p class="log_behavior_show_sex" v-for="sexItem in memberParam.memberSex.items" @click="baseParam.sexVal = sexItem.name">{{sexItem.name}}
+                                        <a class="log_behavior_right" v-if="baseParam.sexVal==sexItem.name"></a>
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="log_behavior_li" @click="showFour($event)" :class="{log_bgcolor_click:baseParam.ageNum1}">
+                                    <span>{{memberParam.memberAge.title}}</span>
+                                    <img src="../images/log_behavior_img3-8.png">
+                                </div>
+                                <div class="log_behavior_show log_behavior_sex log_behavior_form">
+                                    <img src="../images/log_behavior_arr.png" class="log_behavior_show_arr">
+                                    <div>
+                                        <div class="log_behavior_form_labipt">
+                                            <div>
+                                                <input type="text" class="log_behavior_form_ipt log_behavior_form_iptrili width-110" v-model="baseParam.ageNum1">
+                                                <i class="iconfont icon-rili log_behavior_form_rili1"></i>
+                                                <span class="log_behavior_form_span">-</span>
+                                                <input type="text" class="log_behavior_form_ipt log_behavior_form_iptrili width-110" v-model="baseParam.ageNum2">
+                                                <i class="iconfont icon-rili log_behavior_form_rili2"></i>
+                                            </div>
+                                            <span class="log_behavior_calendar">确定</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="log_behavior_li" @click="show($event)" :class="{log_bgcolor_click:baseParam.gradeVal}">
+                                    <span>{{memberParam.memberGrade.title}}</span>
+                                    <img src="../images/log_behavior_img3-9.png">
+                                </div>
+                                <div class="log_behavior_show">
+                                    <img src="../images/log_behavior_arr.png" class="log_behavior_show_arr">
+                                    <p class="log_behavior_show_sex" v-for="gradeItem in memberParam.memberGrade.items" @click="baseParam.gradeVal = gradeItem.name">{{gradeItem.name}}
+                                        <a class="log_behavior_right" v-if="baseParam.gradeVal==gradeItem.name"></a>
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="log_behavior_li" @click="showOne($event)" :class="{log_bgcolor_click:baseParam.openStateVal}">
+                                    <span>{{memberParam.memberOpenState.title}}</span>
+                                    <img src="../images/log_behavior_img1-2.png">
+                                </div>
+                                <div class="log_behavior_show">
+                                    <img src="../images/log_behavior_arr.png" class="log_behavior_show_arr">
+                                    <p class="log_behavior_show_sex" v-for="openStateItem in memberParam.memberOpenState.items" @click="(baseParam.openStateVal.indexOf(openStateItem.name) >= 0)? (baseParam.openStateVal = replaces(baseParam.openStateVal,openStateItem.name)) : (baseParam.openStateVal += ' '+openStateItem.name+' ')">{{openStateItem.name}}
+                                        <a class="log_behavior_right" v-if="baseParam.openStateVal.indexOf(openStateItem.name)>=0"></a>
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="log_behavior_li" @click="show($event)" :class="{log_bgcolor_click:baseParam.tiecardVal}">
+                                    <span>{{memberParam.memberTiecard.title}}</span>
+                                    <img src="../images/log_behavior_img3-10.png">
+                                </div>
+                                <div class="log_behavior_show">
+                                    <img src="../images/log_behavior_arr.png" class="log_behavior_show_arr">
+                                    <p class="log_behavior_show_sex" v-for="tiecardItem in memberParam.memberTiecard.items" @click="baseParam.tiecardVal = tiecardItem.name">{{tiecardItem.name}}
+                                        <a class="log_behavior_right" v-if="baseParam.tiecardVal==tiecardItem.name"></a>
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="log_behavior_li" @click="show($event)" :class="{log_bgcolor_click:baseParam.depositVal}">
+                                    <span>{{memberParam.memberDeposit.title}}</span>
+                                    <img src="../images/log_behavior_img3-11.png">
+                                </div>
+                                <div class="log_behavior_show">
+                                    <img src="../images/log_behavior_arr.png" class="log_behavior_show_arr">
+                                    <p class="log_behavior_show_sex" v-for="depositItem in memberParam.memberDeposit.items" @click="baseParam.depositVal = depositItem.name">{{depositItem.name}}
+                                        <a class="log_behavior_right" v-if="baseParam.depositVal==depositItem.name"></a>
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="log_behavior_li" @click="showOne($event)" :class="{log_bgcolor_click:baseParam.stateVal}">
+                                    <span>{{memberParam.memberState.title}}</span>
+                                    <img src="../images/log_behavior_img1-2.png">
+                                </div>
+                                <div class="log_behavior_show">
+                                    <img src="../images/log_behavior_arr.png" class="log_behavior_show_arr">
+                                    <p class="log_behavior_show_sex" v-for="stateItem in memberParam.memberState.items" @click="(baseParam.stateVal.indexOf(stateItem.name) >= 0)? (baseParam.stateVal = replaces(baseParam.stateVal,stateItem.name)) : (baseParam.stateVal += ' '+stateItem.name+' ')">{{stateItem.name}}
+                                        <a class="log_behavior_right" v-if="baseParam.stateVal.indexOf(stateItem.name)>=0"></a>
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="log_behavior_li" @click="showFive($event)" :class="{log_bgcolor_click:baseParam.IPsiteVal}">
+                                    <span>{{memberParam.memberIPsite.title}}</span>
+                                    <img src="../images/log_behavior_img3-12.png">
+                                </div>
+                                <div class="log_behavior_show log_behavior_twoipt">
+                                    <img src="../images/log_behavior_arr.png" class="log_behavior_show_arr">
+                                    <div class="log_behavior_oneipt_tol">
+                                        <input type="text" placeholder="请输入上级经纪会员编号/名称" v-model="baseParam.IPsiteVal">
+                                        <a>确定</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="log_behavior_li" @click="showFive($event)" :class="{log_bgcolor_click:baseParam.MACsiteVal}">
+                                    <span>{{memberParam.memberMACsite.title}}</span>
+                                    <img src="../images/log_behavior_table_pc.png">
+                                </div>
+                                <div class="log_behavior_show log_behavior_twoipt">
+                                    <img src="../images/log_behavior_arr.png" class="log_behavior_show_arr">
+                                    <div class="log_behavior_oneipt_tol">
+                                        <input type="text" placeholder="请输入上级经纪会员编号/名称" v-model="baseParam.MACsiteVal">
+                                        <a>确定</a>
+                                    </div>
+                                </div>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <!-- 第二块 -->
+                    <div class="log_behavior_total2 log_behavior_total col-overhid" v-if="activeblock==1">
+                        <ul class="log_behavior_list">
+                            <li>
+                                <div class="log_behavior_li" @click="showTwo($event)" :class="{log_bgcolor_click:baseParam.areaProvince}">
+                                    <span>{{memberParam.memberArea.title}}</span>
+                                    <img src="../images/log_behavior_img3-3.png">
+                                </div>
+                                <div class="log_behavior_show log_behavior_tier">
+                                    <img src="../images/log_behavior_arr.png" class="log_behavior_show_arr">
+                                    <ul>
+                                        <li class="col-overhid" v-for="areaItem in memberParam.memberArea.items">
+                                            <div class="log_tier" @click="showTwoOne($event),baseParam.areaProvince = areaItem.province">
+                                                <p>{{areaItem.province}}<a>></a></p>
+                                            </div>
+                                            <div class="log_tier_child width-160">
+                                                <ul>
+                                                    <li v-for="cityItem in areaItem.citys" @click="baseParam.areaCitys = cityItem.name"><p>{{cityItem.name}}</p></li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="log_behavior_li" @click="show($event)" :class="{log_bgcolor_click:baseParam.typeVal}">
+                                    <span>{{memberParam.memberType.title}}</span>
+                                    <img src="../images/log_behavior_img3-1.png">
+                                </div>
+                                <div class="log_behavior_show">
+                                    <img src="../images/log_behavior_arr.png" class="log_behavior_show_arr">
+                                    <p class="log_behavior_show_sex" v-for="typeItem in memberParam.memberType.items" @click="baseParam.typeVal = typeItem.name">{{typeItem.name}}
+                                        <a class="log_behavior_right" v-if="baseParam.typeVal==typeItem.name"></a>
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="log_behavior_li" @click="show($event)" :class="{log_bgcolor_click:baseParam.terminalVal}">
+                                    <span>{{memberParam.memberTerminal.title}}</span>
+                                    <img src="../images/log_behavior_img1-1.png">
+                                </div>
+                                <div class="log_behavior_show">
+                                    <img src="../images/log_behavior_arr.png" class="log_behavior_show_arr">
+                                    <p class="log_behavior_show_sex" v-for="terminalItem in memberParam.memberTerminal.items" @click="baseParam.terminalVal = terminalItem.name">{{terminalItem.name}}
+                                        <a class="log_behavior_right" v-if="baseParam.terminalVal==terminalItem.name"></a>
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="log_behavior_li" @click="showFour($event)" :class="{log_bgcolor_click:baseParam.reptdtNum1}">
+                                    <span>{{memberParam.memberReptdt.title}}</span>
+                                    <img src="../images/log_behavior_img1-4.png">
+                                </div>
+                                <div class="log_behavior_show log_behavior_sex log_behavior_form">
+                                    <img src="../images/log_behavior_arr.png" class="log_behavior_show_arr">
+                                    <div>
+                                        <div class="log_behavior_form_labipt">
+                                            <div>
+                                                <input type="text" class="log_behavior_form_ipt log_behavior_form_iptrili width-110" v-model="baseParam.reptdtNum1">
+                                                <i class="iconfont icon-rili log_behavior_form_rili1"></i>
+                                                <span class="log_behavior_form_span">-</span>
+                                                <input type="text" class="log_behavior_form_ipt log_behavior_form_iptrili width-110" v-model="baseParam.reptdtNum2">
+                                                <i class="iconfont icon-rili log_behavior_form_rili2"></i>
+                                            </div>
+                                            <span class="log_behavior_calendar">确定</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- 第三块 -->
+                    <div class="log_behavior_total3 log_behavior_total col-overhid" v-if="activeblock==2">
+                        <ul class="log_behavior_list">
+                            <li>
+                                <div class="log_behavior_li" @click="show($event)" :class="{log_bgcolor_click:baseParam.indicatorVal}">
+                                    <span>{{memberParam.memberIndicator.title}}</span>
+                                    <img src="../images/log_behavior_img1-1.png">
+                                </div>
+                                <div class="log_behavior_show">
+                                    <img src="../images/log_behavior_arr.png" class="log_behavior_show_arr">
+                                    <p class="log_behavior_show_sex" v-for="indicatorItem in memberParam.memberIndicator.items" @click="baseParam.indicatorVal = indicatorItem.name">{{indicatorItem.name}}
+                                        <a class="log_behavior_right" v-if="baseParam.indicatorVal == indicatorItem.name"></a>
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!--************ right *************-->
+                <div class="log_behavior_rightt">
+                    <div class="log_behavior_titleR">
+                        <span>已筛选条件</span>
+                    </div>
+                    <div class="log_behavior_total1 col-overhid">
+                        <!-- 第一块 -->
+                        <div id="logBehaviorRightt1" class="margin-bottom-30 col-overhid">
+                            <p class="margin-bottom-10">{{logTitles[0].name}}筛选设置</p>
+                            <div class="tips margin-top-10" v-if="baseParam.opentimeNum1">
+                                <i></i>
+                                <span>{{memberParam.memberOpentime.title}}：{{baseParam.opentimeNum1}}  -  {{baseParam.opentimeNum2}}</span>
+                                <div class="tips_close" @click="baseParam.opentimeNum1='',baseParam.opentimeNum2=''">
+                                    <img src="../images/message_close.png">
+                                </div>
+                            </div>
+                            <div class="tips margin-top-10" v-if="baseParam.applytimeNum1">
+                                <i></i>
+                                <span>{{memberParam.memberApplytime.title}}：{{baseParam.applytimeNum1}}  -  {{baseParam.applytimeNum2}}</span>
+                                <div class="tips_close" @click="baseParam.applytimeNum1='',baseParam.applytimeNum2=''">
+                                    <img src="../images/message_close.png">
+                                </div>
+                            </div>
+                            <div class="tips margin-top-10" v-if="baseParam.superiorBrokerVal">
+                                <i></i>
+                                <span>{{memberParam.memberSuperiorBroker.title}}：{{baseParam.superiorBrokerVal}}</span>
+                                <div class="tips_close" @click="baseParam.superiorBrokerVal=''">
+                                    <img src="../images/message_close.png">
+                                </div>
+                            </div>
+                            <div class="tips margin-top-10" v-if="baseParam.provinceBrokerVal">
+                                <i></i>
+                                <span>{{memberParam.memberProvinceBroker.title}}：{{baseParam.provinceBrokerVal}}</span>
+                                <div class="tips_close" @click="baseParam.provinceBrokerVal=''">
+                                    <img src="../images/message_close.png">
+                                </div>
+                            </div>
+                            <div class="tips margin-top-10" v-if="baseParam.openSourceVal">
+                                <i></i>
+                                <span>{{memberParam.memberOpenSource.title}}：{{baseParam.openSourceVal}}</span>
+                                <div class="tips_close" @click="baseParam.openSourceVal=''">
+                                    <img src="../images/message_close.png">
+                                </div>
+                            </div>
+                            <div class="tips margin-top-10" v-if="baseParam.openTypeVal">
+                                <i></i>
+                                <span>{{memberParam.memberOpenType.title}}：{{baseParam.openTypeVal}}</span>
+                                <div class="tips_close" @click="baseParam.openTypeVal=''">
+                                    <img src="../images/message_close.png">
+                                </div>
+                            </div>
+                            <div class="tips margin-top-10" v-if="baseParam.sexVal">
+                                <i></i>
+                                <span>{{memberParam.memberSex.title}}：{{baseParam.sexVal}}</span>
+                                <div class="tips_close" @click="baseParam.sexVal=''">
+                                    <img src="../images/message_close.png">
+                                </div>
+                            </div>
+                            <div class="tips margin-top-10" v-if="baseParam.ageNum1">
+                                <i></i>
+                                <span>{{memberParam.memberAge.title}}：{{baseParam.ageNum1}}  -  {{baseParam.ageNum2}}</span>
+                                <div class="tips_close" @click="baseParam.ageNum1='',baseParam.ageNum2=''">
+                                    <img src="../images/message_close.png">
+                                </div>
+                            </div>
+                            <div class="tips margin-top-10" v-if="baseParam.gradeVal">
+                                <i></i>
+                                <span>{{memberParam.memberGrade.title}}：{{baseParam.gradeVal}}</span>
+                                <div class="tips_close" @click="baseParam.gradeVal=''">
+                                    <img src="../images/message_close.png">
+                                </div>
+                            </div>
+                            <div class="tips margin-top-10" v-if="baseParam.openStateVal">
+                                <i></i>
+                                <span>{{memberParam.memberOpenState.title}}：{{baseParam.openStateVal}}</span>
+                                <div class="tips_close" @click="baseParam.openStateVal=''">
+                                    <img src="../images/message_close.png">
+                                </div>
+                            </div>
+                            <div class="tips margin-top-10" v-if="baseParam.tiecardVal">
+                                <i></i>
+                                <span>{{memberParam.memberTiecard.title}}：{{baseParam.tiecardVal}}</span>
+                                <div class="tips_close" @click="baseParam.tiecardVal=''">
+                                    <img src="../images/message_close.png">
+                                </div>
+                            </div>
+                            <div class="tips margin-top-10" v-if="baseParam.depositVal">
+                                <i></i>
+                                <span>{{memberParam.memberDeposit.title}}：{{baseParam.depositVal}}</span>
+                                <div class="tips_close" @click="baseParam.depositVal=''">
+                                    <img src="../images/message_close.png">
+                                </div>
+                            </div>
+                            <div class="tips margin-top-10" v-if="baseParam.stateVal">
+                                <i></i>
+                                <span>{{memberParam.memberState.title}}：{{baseParam.stateVal}}</span>
+                                <div class="tips_close" @click="baseParam.stateVal=''">
+                                    <img src="../images/message_close.png">
+                                </div>
+                            </div>
+                            <div class="tips margin-top-10" v-if="baseParam.IPsiteVal">
+                                <i></i>
+                                <span>{{memberParam.memberIPsite.title}}：{{baseParam.IPsiteVal}}</span>
+                                <div class="tips_close" @click="baseParam.IPsiteVal=''">
+                                    <img src="../images/message_close.png">
+                                </div>
+                            </div>
+                            <div class="tips margin-top-10" v-if="baseParam.MACsiteVal">
+                                <i></i>
+                                <span>{{memberParam.memberMACsite.title}}：{{baseParam.MACsiteVal}}</span>
+                                <div class="tips_close" @click="baseParam.MACsiteVal=''">
+                                    <img src="../images/message_close.png">
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- 第二块 -->
+                        <div id="logBehaviorRightt2" class="margin-bottom-30 col-overhid">
+                            <p class="margin-bottom-10">{{logTitles[1].name}}筛选设置</p>
+                            <div class="tips margin-top-10" v-if="baseParam.areaProvince">
+                                <i></i>
+                                <span>{{memberParam.memberArea.title}}：{{baseParam.areaProvince}}/{{baseParam.areaCitys}}</span>
+                                <div class="tips_close" @click="baseParam.areaProvince=''">
+                                    <img src="../images/message_close.png">
+                                </div>
+                            </div>
+                            <div class="tips margin-top-10" v-if="baseParam.typeVal">
+                                <i></i>
+                                <span>{{memberParam.memberType.title}}：{{baseParam.typeVal}}</span>
+                                <div class="tips_close" @click="baseParam.typeVal=''">
+                                    <img src="../images/message_close.png">
+                                </div>
+                            </div>
+                            <div class="tips margin-top-10" v-if="baseParam.terminalVal">
+                                <i></i>
+                                <span>{{memberParam.memberTerminal.title}}：{{baseParam.terminalVal}}</span>
+                                <div class="tips_close" @click="baseParam.terminalVal=''">
+                                    <img src="../images/message_close.png">
+                                </div>
+                            </div>
+                            <div class="tips margin-top-10" v-if="baseParam.reptdtNum1">
+                                <i></i>
+                                <span>{{memberParam.memberReptdt.title}}：{{baseParam.reptdtNum1}}  -  {{baseParam.reptdtNum2}}</span>
+                                <div class="tips_close" @click="baseParam.reptdtNum1='',baseParam.reptdtNum2=''">
+                                    <img src="../images/message_close.png">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 第三块 -->
+                        <div id="logBehaviorRightt3" class="margin-bottom-30 col-overhid">
+                            <p class="margin-bottom-10">{{logTitles[2].name}}筛选设置</p>
+                            <div class="tips margin-top-10" v-if="baseParam.indicatorVal">
+                                <i></i>
+                                <span>{{memberParam.memberIndicator.title}}：{{baseParam.indicatorVal}}</span>
+                                <div class="tips_close" @click="baseParam.indicatorVal=''">
+                                    <img src="../images/message_close.png">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- btn -->
+                    <div class="log_behavior_right_btn">
+                        <a class="pub_btn1">查询</a>
+                        <a class="pub_btn2">收起</a>
+                    </div>
+                </div>
+            </div>
+
+            <!--table-->
+            <div class="twomain2">
+                <table class="twomain2_table">
+                    <tr class="twomain2_table_thead">
+                        <th>序号</th>
+                        <th>会员名称(编号)</th>
+                        <th>手机号</th>
+                        <th>所在省份</th>
+                        <th>会员状态</th>
+                        <th>开户时间</th>
+                        <th>申请时间</th>
+                        <th>上级经纪会员</th>
+                        <th>顶级经纪会员</th>
+                        <th>操作</th>
+                    </tr>
+                    <tr class="twomain2_table1">
+                        <td>1</td>
+                        <td>陈默默<br />(1234567890)</td>
+                        <td>13911215124</td>
+                        <td>湖南省，长沙市</td>
+                        <td>正常</td>
+                        <td>2016-11-22</td>
+                        <td>2016-11-23</td>
+                        <td>创无限<br />(77777777)</td>
+                        <td>搜云<br />(88888888)</td>
+                        <td class="twomain2_table_ope">
+                            <a class="twomain2_table_ope1">详情</a>
+                        </td>
+                    </tr>
+                    <tr class="twomain2_table1">
+                        <td>2</td>
+                        <td>陈默默<br />(1234567890)</td>
+                        <td>13911215124</td>
+                        <td>湖南省，长沙市</td>
+                        <td>正常</td>
+                        <td>2016-11-22</td>
+                        <td>2016-11-23</td>
+                        <td>创无限<br />(77777777)</td>
+                        <td>搜云<br />(88888888)</td>
+                        <td class="twomain2_table_ope">
+                            <a class="twomain2_table_ope1">详情</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="twomain3">
+                <div class="fanye">
+                    <a class="fanye2" href="#">首页</a>
+                    <a class="fanye2" href="#">上一页</a>
+                    <a class="fanye1 fanye_now" href="#">1</a>
+                    <a class="fanye1" href="#">2</a>
+                    <a class="fanye1" href="#">3</a>
+                    <a class="fanye_point" href="#">...</a>
+                    <a class="fanye1" href="#">10</a>
+                    <a class="fanye1" href="#">11</a>
+                    <a class="fanye2" href="#">下一页</a>
+                    <a class="fanye2" href="#">尾页</a>
+                    <div class="fanye_go">
+                        <a class="fanye_go_btn iconfont icon-jiantou" href="#"></a>
+                        <input class="fanye_go_inp" type="text" />
+                        <div class="oprate_tip" style="display: none;">
+                            <span>跳转</span>
+                        </div>
+                    </div>
+                    <div class="fanye_xs">
+                        <a class="fanye_xs_btn iconfont icon-daohangliebiao" href="#"></a>
+                        <input class="fanye_xs_inp" type="text" />
+                        <div class="oprate_tip">
+                            <span>单页显示</span>
+                        </div>
+                    </div>
+                    <a class="fanye_word">共5页，40条记录</a>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    
+    <script src="../js/jquery-1.8.3.min.js" language="JavaScript"></script>
+    <script src="../js/vue.js" language="JavaScript"></script>
+    <script src="../js/base_vue.js" language="JavaScript"></script>
+    <script src="../js/base.js" language="JavaScript"></script>
+    <script>
+        logBehaviorBtn();
+    </script>
+
+</body>
+
+</html>

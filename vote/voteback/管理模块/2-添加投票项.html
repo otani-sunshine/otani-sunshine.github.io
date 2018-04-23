@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+    <meta name="renderer" content="webkit" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="format-detection" content="telephone=no" />
+	<link rel="shortcut icon" href="../images/logo_icon.ico" type="/image/x-icon">
+    <link href="../css/base.css" type="text/css" rel="stylesheet" />
+    <link href="../css/vote.css" type="text/css" rel="stylesheet" />
+	<title>添加投票项</title>
+</head>
+<body style="background-color: #ebedf3;">
+	<div class="tone_bg">
+        <div class="tone_base">
+        	<div class="puastep_box">
+        	    <ul class="twomain4">
+        	        <li class="twomain4_every">
+        	            <div class="twomain1_each4 f-16">
+        	            	<span class="f-16">【投票主题名称】</span>的投票项
+        	                <!-- <label>投票查询</label>
+        	                <input type="text" name="" placeholder="请输入投票编号/名称"> -->
+        	            </div>
+        	            <!-- <div class="twomain1_each3">
+        	                <label>投票主题</label>
+        	                <select>
+        	                    <option>全部投票主题</option>
+        	                    <option>投票主题1</option>
+        	                    <option>投票主题2</option>
+        	                    <option>投票主题3</option>
+        	                </select>
+        	            </div> -->
+        	            <div class="twomain1_btn">
+        	                <!-- <a class="twomain1_btn1" href="#">查询</a> -->
+        	               <!--  <a class="twomain1_btn3" href="#"><span>投票主题</span></a> -->
+        	                <a class="twomain1_btn3" href="#">
+        	                    <i class="iconfont icon-jiahao"></i>
+        	                    <span>添加投票项</span>
+        	                </a>
+        	            </div>
+        	        </li>
+        	    </ul>
+        	    <div class="twomain2">
+        	        <table class="twomain2_table">
+        	            <tr class="twomain2_table_thead">
+        	            	<th>编号</th>
+        	                <th>图片</th>
+        	                <th>投票项名称</th>
+        	                <th>更新时间</th>
+        	                <th>操作</th>
+        	            </tr>
+        	            <tr class="twomain2_table1 vote_table1_tr">
+        	                <td>001</td>
+        	                <td>
+        	                    <div class="vote_table1_pictrue">
+        	                        <img src="../images/comsh_pro1.png" />
+        	                    </div>
+        	                </td>
+        	                <td>投票项名称</td>
+        	                <td>2018-01-20 09:00:00</td>
+        	                <td class="twomain2_table_ope">
+        	                    <a class="twomain2_table_ope1">编辑</a>
+        	                    <span> | </span>
+        	                    <a class="twomain2_table_ope1">删除</a>
+        	                </td>
+        	            </tr>
+        	            <tr class="twomain2_table1 vote_table1_tr">
+        	                <td>002</td>
+        	                <td>
+        	                    <div class="vote_table1_pictrue">
+        	                        <img src="../images/comsh_pro1.png" />
+        	                    </div>
+        	                </td>
+        	                <td>投票项名称</td>
+        	                <td>2018-01-20 09:00:00</td>
+        	                <td class="twomain2_table_ope">
+        	                    <a class="twomain2_table_ope1">编辑</a>
+        	                    <span> | </span>
+        	                    <a class="twomain2_table_ope1">删除</a>
+        	                </td>
+        	            </tr>
+        	        </table>
+        	    </div>
+        	    <div class="twomain3">
+        	        <div class="fanye">
+        	            <a class="fanye2" href="#">首页</a>
+        	            <a class="fanye2" href="#">上一页</a>
+        	            <a class="fanye1 fanye_now" href="#">1</a>
+        	            <a class="fanye1" href="#">2</a>
+        	            <a class="fanye1" href="#">3</a>
+        	            <a class="fanye1" href="#">4</a>
+        	            <a class="fanye_point" href="#">...</a>
+        	            <a class="fanye1" href="#">12</a>
+        	            <a class="fanye2" href="#">下一页</a>
+        	            <a class="fanye2" href="#">尾页</a>
+        	            <div class="fanye_go">
+        	                <a class="fanye_go_btn iconfont icon-jiantou" href="#">
+        	                    <span></span>
+        	                </a>
+        	                <input class="fanye_go_inp" type="text">
+        	                <div class="oprate_tip" style="display: none;">
+        	                    <span>跳转</span>
+        	                </div>
+        	            </div>
+        	            <div class="fanye_xs">
+        	                <a class="fanye_xs_btn iconfont icon-daohangliebiao" href="#">
+        	                    <span></span>
+        	                </a>
+        	                <input class="fanye_xs_inp" type="text">
+        	                <div class="oprate_tip" style="display: none;">
+        	                    <span>单页显示</span>
+        	                </div>
+        	            </div>
+        	            <a class="fanye_word">共5页，40条记录</a>
+        	        </div>
+        	    </div>
+        	</div>
+        </div>
+    </div>
+
+
+
+
+     <!--编辑投票项弹窗 -->
+    <div class="dialog_bg" style="display: none;">
+        <div class="dialog_base popup width-750">
+            <div class="popup_bg">
+                <!-- <div class="popup_title">编辑投票项</div> -->
+                <div class="dialog_title">
+                    <p>编辑投票项</p>
+                    <a class="iconfont icon-esc"></a>
+                </div>
+                <div class="popup_main">
+                    <ul class="pubcox_enter_bg">
+                        <li class="pubcox_enter">
+                            <label class="pubcox_enter_lab4">名称 <i>*</i></label>
+                            <input class="pubcox_enter_inp6" type="text" placeholder="请输入16个字以内的名称" />
+                            <div class="pubcox_enter_wrong" style="display: ;left: 467px;"><p>请输入16个字以内的名称</p></div>
+                        </li>
+                         <li class="pubcox_enter">
+                            <label class="pubcox_enter_lab4">编号 <i>*</i></label>
+                            <input class="pubcox_enter_inp3" type="text" placeholder="请输入数值编号（如001）" />
+                            <div class="pubcox_enter_wrong" style="display: ;left: 325px;"><p>请输入数值编号（如001）</p></div>
+                        </li>
+                        <li class="pubcox_enter">
+                            <label class="pubcox_enter_lab4">图片<i>*</i></label>
+                            <div class="puacox_enter_vou width-120 height-120">
+                                <input type="file" onchange="upload(this)" multiple="">
+                                <!-- <i class="puacox_enter_vouclick"></i> -->
+                                <div class="puacox_enter_vouin">
+                                    <i class="margin-top-20"></i>
+                                    <p>点击上传</p>
+                                    <span>jpg或png格式</span>
+                                </div>
+                                <div class="puacox_enter_voupic" style="display: none;">
+                                    <img>
+                                    <div>
+                                        <a class="puacox_enter_voupic_btn1" onclick="toUpload(this)">
+                                            <i class="iconfont icon-bianjixiugai"></i>
+                                            <span>修改</span>
+                                        </a>
+                                        <a class="puacox_enter_voupic_btn2" target="_blank">
+                                            <i class="iconfont icon-sousuochaxun"></i>
+                                            <span>查看</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pubcox_enter_wrong" style="display:;left: 232px"><p>您上传的图片超过2M，请压缩后上传</p></div>
+                        </li>
+                        <li class="pubcox_enter">
+                            <label class="pubcox_enter_lab1">介绍<i>*</i></label>
+                            <div></div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="popup_bottom">
+                    <a href="#" class="btn_active">确定</a><span></span><a href="#">取消</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>

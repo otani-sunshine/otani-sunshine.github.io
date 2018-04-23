@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html style="width: 100%;height: 100%;">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="renderer" content="webkit" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="shortcut icon" href="../images/logo_icon.ico" type="/image/x-icon">
+    <link href="../css/base.css" type="text/css" rel="stylesheet" />
+    <title>查询组件</title>
+</head>
+
+<body style="background-color: #ebedf3;">
+    <div class="tone_bg">
+        <div class="tone_base">
+            <div class="twomain1 puaprde_search">
+                <div class="twomain1_btn">
+                    <a class="twomain1_btn1 log_behavior_btn">筛选</a>
+                </div>
+            </div>
+            
+            <!-- 筛选 -->
+            <div id="inquire" class="log_behavior col-overhid">
+                <!--********************* left *********************-->
+                <div class="log_behavior_left">
+                    <div class="log_behavior_title">
+                        <p @click="ctabs(logTitle.id,logTitle.id)" v-for="logTitle in logTitles" :class="{log_behavior_title_now:active == logTitle.id}">{{logTitle.name}}</p>
+                    </div>
+                    <div class="log_behavior_total1 log_behavior_total col-overhid" v-for="logTitle in logTitles" v-if="activeblock==logTitle.id">
+                        <ul class="log_behavior_list" >
+                            <template  v-for="node in param"  v-if="node.wide==logTitle.id">
+                                <template v-if="node.type=='select-one'">
+                                    <select-one v-model="outParam" :node="node"></select-one>
+                                </template>
+                                <template v-if="node.type=='select-two'">
+                                    <select-two v-model="outParam" :node="node"></select-two>
+                                </template>
+                                <template v-if="node.type=='input-one'">
+                                    <input-one v-model="outParam" :node="node"></input-one>
+                                </template>
+                                <template v-if="node.type=='input-two'">
+                                    <input-two v-model="outParam" :node="node"></input-two>
+                                </template>
+                                <template v-if="node.type=='input-time'">
+                                    <input-time v-model="outParam" :node="node"></input-time>
+                                </template>
+                                <template v-if="node.type=='input-double'">
+                                    <input-double v-model="outParam" :node="node"></input-double>
+                                </template>
+                                <template v-if="node.type=='select-one-all'">
+                                    <select-one-all v-model="outParam" :node="node"></select-one-all>
+                                </template>
+                                <template v-if="node.type=='input-five'">
+                                    <input-five v-model="outParam" :node="node"></input-five>
+                                </template>
+                            </template>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!--********************* right ********************-->
+                <div class="log_behavior_rightt">
+                    <div class="log_behavior_titleR">
+                        <span>已筛选条件</span>
+                    </div>
+                    <div class="log_behavior_total1 col-overhid">
+                        <div id="logBehaviorRightt1" class="log_behavior_result margin-bottom-30 col-overhid" v-for="logTitle in logTitles">
+                            <p class="margin-bottom-10">{{logTitle.name}}筛选设置</p>
+                            <template v-for="node in param" v-if="node.wide==logTitle.id">
+                                <template v-if="isShow(node)">
+                                    <right-result v-model="outParam" :node="node"></right-result>
+                                </template>
+                            </template>
+                        </div>
+                    </div>
+                    <!-- btn -->
+                    <div class="log_behavior_right_btn">
+                        <a class="pub_btn1">查询</a>
+                        <a class="pub_btn2">收起</a>
+                    </div>
+                    <div>{{outParam}}</div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    
+    <!-- ******************组件********************* -->
+    <!-- 1 -->
+    <template id="select-one">
+        <li>
+            <div class="log_behavior_li" @click="show($event)" :class="{log_bgcolor_click:isShow(node)}">
+                <span>{{node.title}}</span>
+                <img :src="node.imgUrl">
+            </div>
+            <div class="log_behavior_show">
+                <img src="../images/log_behavior_arr.png" class="log_behavior_show_arr">
+                <p class="log_behavior_show_sex" v-for="sone in node.items" :title="sone.name"
+                @click="setValue(node.names[0],sone.id)">
+                    {{sone.name}}
+                    <a class="log_behavior_right" v-if="getValue(node.names[0]) == sone.id"></a>
+                </p>
+            </div>
+        </li>
+    </template>
+    <!-- 2 -->
+    <template id="select-two">
+        <li>
+            <div class="log_behavior_li" @click="showTwo($event)" :class="{log_bgcolor_click:isShow(node)}">
+                <span>{{node.title}}</span>
+                <img :src="node.imgUrl">
+            </div>
+            <div class="log_behavior_show log_behavior_tier">
+                <img src="../images/log_behavior_arr.png" class="log_behavior_show_arr">
+                <ul>
+                    <li class="col-overhid" v-for="stwo in node.items">
+                        <div class="log_tier" @click="showTwoOne($event),setValue(node.names[0],stwo.id),setValue(node.names[1],''),node.secondText=''">
+                            <p :title="stwo.name">{{stwo.name}}<a>></a></p>
+                        </div>
+                        <div class="log_tier_child width-160">
+                            <ul>
+                                <li v-for="sctwo in stwo.twoItems" @click="setValue(node.names[1],sctwo.id)"><p :title="sctwo.name">{{sctwo.name}}</p></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </li>
+    </template>
+    <!-- 3 -->
+    <template id="input-one">
+        <li>
+            <div class="log_behavior_li" @click="showThree($event)" :class="{log_bgcolor_click:isShow(node)}">
+                <span>{{node.title}}</span>
+                <img :src="node.imgUrl">
+            </div>
+            <div class="log_behavior_show log_behavior_twoipt1">
+                <img src="../images/log_behavior_arr.png" class="log_behavior_show_arr">
+                <div class="log_behavior_twoipt_tol">
+                    <span>{{node.word}}</span>
+                    <input type="text" :placeholder="node.placeholder" v-model="node.text" :change="setValue(node.names[0],node.text)">
+                    <a>确定</a>
+                </div>
+            </div>
+        </li>
+    </template>
+    <!-- 4 -->
+    <template id="input-two">
+        <li>
+            <div class="log_behavior_li" @click="showFive($event)" :class="{log_bgcolor_click:isShow(node)}">
+                <span>{{node.title}}</span>
+                <img :src="node.imgUrl">
+            </div>
+            <div class="log_behavior_show log_behavior_twoipt">
+                <img src="../images/log_behavior_arr.png" class="log_behavior_show_arr">
+                <div class="log_behavior_oneipt_tol">
+                    <input type="text" :placeholder="node.placeholder" v-model="node.text" :change="setValue(node.names[0],node.text)">
+                    <a>确定</a>
+                </div>
+            </div>
+        </li>
+    </template>
+    <!-- 5 -->
+    <template id="input-time">
+        <li>
+            <div class="log_behavior_li" @click="showFour($event)" :class="{log_bgcolor_click:isShow(node)}">
+                <span>{{node.title}}</span>
+                <img :src="node.imgUrl">
+            </div>
+            <div class="log_behavior_show log_behavior_sex log_behavior_form">
+                <img src="../images/log_behavior_arr.png" class="log_behavior_show_arr">
+                <div>
+                    <div class="log_behavior_form_labipt">
+                        <div>
+                            <input type="text" class="log_behavior_form_ipt log_behavior_form_iptrili width-110" v-model="node.text" :change="setValue(node.names[0],node.text)">
+                            <i class="iconfont icon-rili log_behavior_form_rili1"></i>
+                            <span class="log_behavior_form_span">-</span>
+                            <input type="text" class="log_behavior_form_ipt log_behavior_form_iptrili width-110" v-model="node.secondText" :change="setValue(node.names[1],node.secondText)">
+                            <i class="iconfont icon-rili log_behavior_form_rili2"></i>
+                        </div>
+                        <span class="log_behavior_calendar">确定</span>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </template>
+    <!-- 6 -->
+    <template id="input-double">
+        <li>
+            <div class="log_behavior_li" @click="showFour($event)" :class="{log_bgcolor_click:isShow(node)}">
+                <span>{{node.title}}</span>
+                <img :src="node.imgUrl">
+            </div>
+            <div class="log_behavior_show log_behavior_sex log_behavior_form">
+                <img src="../images/log_behavior_arr.png" class="log_behavior_show_arr">
+                <div>
+                    <div class="log_behavior_form_labipt">
+                        <div>
+                            <input type="text" class="log_behavior_form_ipt log_behavior_form_iptrili width-110" v-model="node.text" :change="setValue(node.names[0],node.text)">
+                            <span class="log_behavior_form_span">-</span>
+                            <input type="text" class="log_behavior_form_ipt log_behavior_form_iptrili width-110" v-model="node.secondText" :change="setValue(node.names[1],node.secondText)">
+                        </div>
+                        <span class="log_behavior_calendar">确定</span>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </template>
+    <!-- 7 -->
+    <template id="select-one-all">
+        <li>
+            <div class="log_behavior_li" @click="showOne($event)" :class="{log_bgcolor_click:isShow(node)}">
+                <span>{{node.title}}</span>
+                <img :src="node.imgUrl">
+            </div>
+            <div class="log_behavior_show">
+                <img src="../images/log_behavior_arr.png" class="log_behavior_show_arr">
+                <p class="log_behavior_show_sex" v-for="soneall in node.items" :title="soneall.name"
+                @click="setValue(node.names[0],soneall.id)">
+                    {{soneall.name}}
+                    <a class="log_behavior_right" v-if="node.text.indexOf(soneall.name)>=0"></a>
+                </p>
+            </div>
+        </li>
+    </template>
+    <!-- 8 -->
+    <template id="input-five">
+        <li>
+            <div class="log_behavior_li" @click="showSix($event)" :class="{log_bgcolor_click:isShow(node)}">
+                <span>{{node.title}}</span>
+                <img :src="node.imgUrl">
+            </div>
+            <div class="log_behavior_show log_behavior_sex log_behavior_form">
+                <img src="../images/log_behavior_arr.png" class="log_behavior_show_arr">
+                <div class="log_behavior_form_each" v-for="(backObj,index) in list">
+                    <template v-for="childNode in node.childNodeList">
+                        <div class="log_behavior_form_labipt" v-if="childNode.type=='input-one'">
+                            <label>{{childNode.title}}</label>
+                            <div>
+                                <input type="text" class="log_behavior_form_ipt width-150" :placeholder="becomeString(childNode.placeholder,0)" @change="setChildValue(backObj,childNode.names[0],$event)" :value="getChildValue(backObj,childNode.names[0])">
+                            </div>
+                        </div>
+                        <div class="log_behavior_form_labipt" v-if="childNode.type=='input-double'">
+                            <label>{{childNode.title}}</label>
+                            <div>
+                                <input type="text" class="log_behavior_form_ipt " :placeholder="becomeString(childNode.placeholder,0)" @change="setChildValue(backObj,childNode.names[0],$event)" :value="getChildValue(backObj,childNode.names[0])">
+                                <span class="log_behavior_form_span">至</span>
+                                <input type="text" class="log_behavior_form_ipt" :placeholder="becomeString(childNode.placeholder,1)"@change="setChildValue(backObj,childNode.names[1],$event)" :value="getChildValue(backObj,childNode.names[1])">
+                            </div>
+                        </div>
+                        <div class="log_behavior_form_labipt" v-if="childNode.type=='input-time'">
+                            <label>{{childNode.title}}</label>
+                            <div>
+                                <input type="text" class="log_behavior_form_ipt log_behavior_form_iptrili"@change="setChildValue(backObj,childNode.names[0],$event)" :value="getChildValue(backObj,childNode.names[0])">
+                                <i class="iconfont icon-rili log_behavior_form_rili3"></i>
+                                <span class="log_behavior_form_span">-</span>
+                                <input type="text" class="log_behavior_form_ipt log_behavior_form_iptrili"@change="setChildValue(backObj,childNode.names[1],$event)" :value="getChildValue(backObj,childNode.names[1])">
+                                <i class="iconfont icon-rili log_behavior_form_rili2"></i>
+                            </div>
+                        </div>
+                    </template>
+                    <div class="log_behavior_form_labipt">
+                        <div class="log_behavior_form_line"></div>
+                    </div>
+                    <a class="log_behavior_form_eachxx" @click="deleteOne(index)"></a>
+                </div>
+                <div class="log_behavior_form_labipt">
+                    <a class="log_behavior_form_add"  @click="addNode()">+ 新增一组筛选</a>
+                </div>
+                <a class="log_behavior_form_sure">确定</a>
+            </div>
+        </li>
+    </template>
+    <!-- result -->
+    <template id="right-result">
+        <div class="tips margin-top-10">
+            <i></i>
+            <template v-if="node.type=='select-one'">
+                <span>{{node.title}}：{{node.text}}</span>
+                <div class="tips_close" @click="setValue(node.names[0],''),node.text=''">
+                    <img src="../images/message_close.png">
+                </div>
+            </template>
+            <template v-if="node.type=='select-two'">
+                <span>{{node.title}}：{{node.text}}/{{node.secondText}}</span>
+                <div class="tips_close" @click="setValue(node.names[0],''),setValue(node.names[1],''),node.text='',node.secondText=''">
+                    <img src="../images/message_close.png">
+                </div>
+            </template>
+            <template v-if="node.type=='input-one'">
+                <span>{{node.title}}：{{node.text}}</span>
+                <div class="tips_close" @click="setValue(node.names[0],''),node.text=''">
+                    <img src="../images/message_close.png">
+                </div>
+            </template>
+            <template v-if="node.type=='input-two'">
+                <span>{{node.title}}：{{node.text}}</span>
+                <div class="tips_close" @click="setValue(node.names[0],''),node.text=''">
+                    <img src="../images/message_close.png">
+                </div>
+            </template>
+            <template v-if="node.type=='input-time'">
+                <span>{{node.title}}：{{node.text}}  -  {{node.secondText}}</span>
+                <div class="tips_close" @click="setValue(node.names[0],''),setValue(node.names[1],''),node.text='',node.secondText=''">
+                    <img src="../images/message_close.png">
+                </div>
+            </template>
+            <template v-if="node.type=='input-double'">
+                <span>{{node.title}}：{{node.text}}  -  {{node.secondText}}</span>
+                <div class="tips_close" @click="setValue(node.names[0],''),setValue(node.names[1],''),node.text='',node.secondText=''">
+                    <img src="../images/message_close.png">
+                </div>
+            </template>
+            <template v-if="node.type=='select-one-all'">
+                <span>{{node.title}}：{{node.text}}</span>
+                <div class="tips_close" @click="setValue(node.names[0],''),clearText(node)">
+                    <img src="../images/message_close.png">
+                </div>
+            </template>
+            <template v-if="node.type=='input-five'">
+                <span>{{node.title}}：
+                    <template v-for="backObj in getValue(node.names[0])" v-if="isShow(backObj,node)">
+                        <template v-for="childNode in node.childNodeList">
+                            <template v-if="childNode.type=='input-one'">{{childNode.title}}： {{getChildValue(backObj,childNode.names[0])}} </template>
+                            <template v-if="childNode.type=='input-double'">{{childNode.title}}： {{getChildValue(backObj,childNode.names[0])}} 至 {{getChildValue(backObj,childNode.names[1])}} </template>
+                            <template v-if="childNode.type=='input-time'">{{childNode.title}}： {{getChildValue(backObj,childNode.names[0])}} - {{getChildValue(backObj,childNode.names[1])}} </template>
+                        </template>
+                    </template>
+                </span>
+                <div class="tips_close" @click="clearFive()">
+                    <img src="../images/message_close.png">
+                </div>
+            </template>
+        </div>
+    </template>
+
+    
+    <script src="../js/jquery-1.8.3.min.js" language="JavaScript"></script>
+    <script src="../js/jquery.map-0.0.1.min.js" language="JavaScript"></script>
+    <script src="../js/vue.js" language="JavaScript"></script>
+    <script src="../js/base_vue.js" language="JavaScript"></script>
+    <script src="../js/base.js" language="JavaScript"></script>
+    <script>
+        logBehaviorBtn();
+    </script>
+
+</body>
+
+</html>

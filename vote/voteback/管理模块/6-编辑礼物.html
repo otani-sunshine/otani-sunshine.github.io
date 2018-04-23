@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html style="width: 100%;height: 100%;">
+<head>
+	<meta charset="utf-8" />
+    <meta name="renderer" content="webkit" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="format-detection" content="telephone=no" />
+	<link rel="shortcut icon" href="../images/logo_icon.ico" type="/image/x-icon">
+    <link href="../css/base.css" type="text/css" rel="stylesheet" />
+    <link href="../css/vote.css" type="text/css" rel="stylesheet" />
+	<title>编辑礼物</title>
+</head>
+
+<body style="background-color: #ebedf3;">
+    
+	<!--main-->
+    <div class="tone_bg">
+        <div class="tone_base">
+            <div class="putab_bg">
+                <!--tab-->
+                <div class="putab">
+                    <a class="putab_now">编辑礼物</a>
+                    <u></u>
+                </div>
+                <!--tab-box-->
+                <div class="putab_box">
+                    <ul class="pubcox_enter_bg">
+                        <li class="pubcox_enter">
+                            <label class="pubcox_enter_lab1">帐号类型 <i>*</i></label>
+                            <input class="pubcox_enter_rad1" type="radio" checked="true" />
+                            <p class="pubcox_enter_word1">公众号微信支付</p>
+                        </li>
+                        <li class="pubcox_enter">
+                            <label class="pubcox_enter_lab1">帐号名称 <i>*</i></label>
+                            <input class="pubcox_enter_inp1" type="text" placeholder="收款方名称[区别账号]" />
+                            <div class="pubcox_enter_wrong" style="display: ;left: 580px;"><p>请输入账户名称</p></div>
+                        </li>
+                        <li class="pubcox_enter">
+                            <label class="pubcox_enter_lab1">微信支付商户号[MCHID] <i>*</i></label>
+                            <input class="pubcox_enter_inp1" type="text" />
+                        </li>
+                        <li class="pubcox_enter">
+                            <label class="pubcox_enter_lab1">开发者ID[AppID] <i>*</i></label>
+                            <input class="pubcox_enter_inp1" type="text" />
+                        </li>
+                        <li class="pubcox_enter">
+                            <label class="pubcox_enter_lab1">开发者密码[Appsecret] <i>*</i></label>
+                            <input class="pubcox_enter_inp1" type="text" />
+                        </li>
+                        <li class="pubcox_enter">
+                            <label class="pubcox_enter_lab1">API密钥 <i>*</i></label>
+                            <input class="pubcox_enter_inp1" type="text" />
+                        </li>
+                        <li class="pubcox_enter">
+                            <label class="pubcox_enter_lab1">web服务器文件 <i>*</i></label>
+                            <input class="pubcox_enter_inp1" type="text" placeholder="请上传一个文本格式的文件" />
+                            <a class="pubcox_enter_link pubcox_vote_file" href="javascript:void(0)">选择文件
+                                <input type="file" />
+                            </a>
+                        </li>
+                        <li class="pubcox_enter">
+                            <label class="pubcox_enter_lab1">证书文件[apiclient_cert] <i>*</i></label>
+                            <input class="pubcox_enter_inp1" type="text" placeholder="请上传一个文本格式的文件" />
+                            <a class="pubcox_enter_link pubcox_vote_file" href="javascript:void(0)">选择文件
+                                <input type="file" />
+                            </a>
+                        </li>
+                        <li class="pubcox_enter">
+                            <label class="pubcox_enter_lab1">证书密钥[apiclient_key]] <i>*</i></label>
+                            <input class="pubcox_enter_inp1" type="text" placeholder="请上传一个文本格式的文件" />
+                            <a class="pubcox_enter_link pubcox_vote_file" href="javascript:void(0)">选择文件
+                                <input type="file" />
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- btn -->
+                    <div class="pub_btn">
+                        <a class="pub_btn1 float-left margin-left-170" href="#">确认</a>
+                        <a class="pub_btn2 float-left" href="#">返回</a>
+                    </div>
+                </div>
+                
+            </div>
+            
+        </div>
+    </div>
+    
+    
+	<script src="../js/jquery.js" language="JavaScript"></script>
+	<script src="../js/base.js" language="JavaScript"></script>
+    <script>
+        puTab();
+        //----本页展示用--input-file---
+        $(function(){
+            $('.pubcox_vote_file').children('input[type=file]').change(function(){
+                $(this).parents('.pubcox_vote_file').siblings('.pubcox_enter_inp1').val($(this).val());
+            })
+        })
+    </script>
+
+</body>
+</html>

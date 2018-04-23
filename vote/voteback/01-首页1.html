@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html style="width: 100%;height: 100%;">
+<head>
+    <meta charset="utf-8" />
+    <meta name="renderer" content="webkit" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="shortcut icon" href="images/logo_icon.ico" type="/image/x-icon">
+    <link href="./css/base.css" type="text/css" rel="stylesheet" />
+    <title>首页1</title>
+</head>
+<body style="background-color: #ebedf3;">
+
+    <!--main-->
+    <div class="stage_bg">
+        <!--左侧-->
+        <div class="stage_left">
+            <div class="stage_cont">
+                <div class="stage_cont_title">常用菜单</div>
+                <ul class="stage_list">
+                    <li>
+                        <img src="images/stage1.png">
+                        <p>品种管理</p>
+                        <a>配售品种管理 ></a>
+                        <a>协议转让 ></a>
+                    </li>
+                    <li>
+                        <img src="images/stage2.png">
+                        <p>会员管理</p>
+                        <a>交易会员 ></a>
+                        <a>交易会员持仓 ></a>
+                        <a>市场公司 ></a>
+                    </li>
+                    <li>
+                        <img src="images/stage3.png">
+                        <p>运营管理</p>
+                        <a>文章列表 ></a>
+                        <a>文章分组 ></a>
+                    </li>
+                    <li>
+                        <img src="images/stage4.png">
+                        <p>系统管理</p>
+                        <a>交易参数 ></a>
+                        <a>清结算参数 ></a>
+                    </li>
+                </ul>
+                <div style="clear: both"></div>
+                <div class="stage_cont_title margin-top-40">待处理工单</div>
+                <ul class="stage_datelist">
+                    <li v-for="datelist in datelists" style="display: ;">
+                        <span>[{{datelist.time}}]</span>
+                        <a class="stage_over">{{datelist.message}}</a>
+                    </li>
+                    <!-- 无记录 -->
+                    <li class="stage_datelist_null" style="display: none;">
+                        <div>
+                            <img src="images/icon_oi.png" />
+                            <p>暂无记录</p>
+                        </div>
+                    </li>
+                </ul>
+                <a class="stage_foot">更多 >></a>
+            </div>
+        </div>
+        <!--右侧-->
+        <div class="stage_right">
+            <div class="stage_cont">
+                <div class="stage_right_top">
+                    <img src="images/lnavha_pic.png">
+                    <p>超级管理员</p>
+                    <p>上次登录时间: <span>201705-20 15:30:29</span></p>
+                    <a class="pub_btn3">修改密码</a>
+                </div>
+                <div class="stage_cont_title margin-top-40">最新消息</div>
+                <ul class="stage_datelist">
+                    <li v-for="list in lists" style="display: ;">
+                        <span>[{{list.data}}]</span>
+                        <a class="stage_over">{{list.message}}</a>
+                        <div class="stage_tips" v-show="list.Isnew">new</div>
+                    </li>
+                    <!-- 无记录 -->
+                    <li class="stage_datelist_null" style="display: none;">
+                        <div>
+                            <img src="images/icon_oi.png" />
+                            <p>暂无记录</p>
+                        </div>
+                    </li>
+                </ul>
+                <a class="stage_foot">更多 >></a>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="./js/jquery.js" language="JavaScript"></script>
+    <script src="js/vue.js"></script>
+    <script src="./js/base.js" language="JavaScript"></script>
+    <script>
+        puaMose();
+    </script>
+    <script>
+        const stage_l = new Vue({
+            el : '.stage_left',
+            data : {
+                datelists : [
+                    {
+                        time:'10.21 14:29:31',
+                        message:'CF手游1批发售基本信息审核本信息审核本信息审核本信息审核本信息审核审核本信息审核审核本信息审核审核本信息审核审核本信息审核审核本信息审核审核本信息审核审核本信息审核本信息审核本信息审核'
+                    },
+                    {
+                        time:'10.21 14:29:31',
+                        message:'CF手游1批发售基本信息审核本信息'
+                    },
+                    {
+                        time:'10.21 14:29:31',
+                        message:'CF手游1批发售基本信息审核本信息审核息审核本信息审核本信息审核本信息审核'
+                    },
+                    {
+                        time:'10.21 14:29:31',
+                        message:'CF手游1批发售基本信息审核本信息审核本审核本信息审核本信息审核'
+                    },
+                    {
+                        time:'10.21 14:29:31',
+                        message:'CF手游1批发售基本信息审核本信息审核本信息审核本信息审核本信息审核本信息审核本信息审核'
+                    },
+                ]
+            }
+        });
+        const stage_r = new Vue({
+            el : '.stage_right',
+            data : {
+                lists :[
+                    {
+                        data:'6.23',
+                        message:'CF手游1批发售基本信息审核等等的',
+                        Isnew:true
+                    },
+                    {
+                        data:'6.24',
+                        message:'CF手游1批发售基本信息审核等等的等的等的等的等的等的',
+                        Isnew:false
+                    },
+                    {
+                        data:'6.25',
+                        message:'CF手游1批发售基本信息审核等等的',
+                        Isnew:false
+                    },
+                    {
+                        data:'6.26',
+                        message:'CF手游1批发售基本信息审核等等的等的等的等的等的',
+                        Isnew:true
+                    },
+                    {
+                        data:'6.27',
+                        message:'CF手游1批发售基本信息审核等等的',
+                        Isnew:false
+                    }
+                ],
+                Isnew : true
+            }
+        });
+    </script>
+
+</body>
+</html>
